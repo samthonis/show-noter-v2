@@ -41,7 +41,7 @@ export class App extends React.Component {
     render() {
         return (
             <div>
-                <h1>ShowNoter beta</h1>
+                <h1>ShowNoter beta test</h1>
                 <InputSection submit={this.submit}/>
                 <HTMLOutputLines onRemove={this.removeNote} showNotes={this.state.showNotes} />
                 <HTMLOutput showNotes={this.state.showNotes} />
