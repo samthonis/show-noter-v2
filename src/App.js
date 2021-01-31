@@ -3,6 +3,7 @@ import InputSection from './InputSection';
 import HTMLOutputLines from './HTMLOutputLines';
 import HTMLOutput from './HTMLOutput';
 import FormattedOutput from './FormattedOutput';
+import './App.css';
 
 export class App extends React.Component {
     constructor(props) {
@@ -15,10 +16,6 @@ export class App extends React.Component {
     }
 
     submit(note) {
-      // if (note.timestamp === '') {
-      //   alert('Must have timestamp');
-      //   return;
-      // }
       this.setState({
         showNotes: [{timestamp: ''}]
       })
@@ -32,20 +29,34 @@ export class App extends React.Component {
       this.setState({ showNotes: this.state.showNotes.concat(note)})
     }
 
-    removeNote(timestamp) {
+    removeNote(id) {
+      console.log('you tried to remove current id: ' + id);
       let notes = this.state.showNotes;
-      notes = notes.filter(savednote => savednote.timestamp !== timestamp);
+      console.log(notes);
+      notes = notes.filter(savedNote => savedNote.id !== id);
+      console.log(notes);
       this.setState({showNotes: notes});
     }
 
     render() {
         return (
             <div>
-                <h1>ShowNoter beta test</h1>
-                <InputSection submit={this.submit}/>
-                <HTMLOutputLines onRemove={this.removeNote} showNotes={this.state.showNotes} />
-                <HTMLOutput showNotes={this.state.showNotes} />
-                <FormattedOutput showNotes={this.state.showNotes} />
+                <header>
+                  <h1><span>SHOW</span>NOTER *beta</h1>
+                </header>
+                <div id="inputSection">
+                  <InputSection submit={this.submit}/>
+                </div>
+                <div id="htmlOutputLines">
+                  <HTMLOutputLines onRemove={this.removeNote} showNotes={this.state.showNotes} />
+                </div>
+                <div id="htmlOutput">
+                  <HTMLOutput showNotes={this.state.showNotes} />
+                </div>
+                <div id="formattedOutput">
+                  <FormattedOutput showNotes={this.state.showNotes} />
+                </div>
+                <footer>made by sam</footer>
             </div>
         )
     }

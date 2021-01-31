@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 
+let id = 1;
+
 export default class InputSection extends Component {
     constructor(props) {
         super(props);
         this.state = {
             timestamp: '',
             url: '',
-            linktext: ''
+            linktext: '',
+            id: ''
         }
         this.handleTimestampChange = this.handleTimestampChange.bind(this);
         this.handleLinkTextChange = this.handleLinkTextChange.bind(this);
@@ -28,16 +31,19 @@ export default class InputSection extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        this.setState({ id: `${id}` })
         this.props.submit({ 
             timestamp: this.state.timestamp, 
             url: this.state.url, 
-            linktext: this.state.linktext
+            linktext: this.state.linktext,
+            id: this.state.id
         });
         this.setState({
             timestamp: '',
             url: '',
             linktext: ''
-        })
+        });
+        id++;
     }
 
     
@@ -46,18 +52,20 @@ export default class InputSection extends Component {
         return (
             <div>
                 <form>
-                    <label>
-                        Timestamp:
-                        <input value={this.state.timestamp} onChange={this.handleTimestampChange} type="text" name="timestamp" required />
-                    </label>
-                    <label>
-                        URL:
-                        <input value={this.state.url} onChange={this.handleURLChange} type="text" name="url" />
-                    </label>
-                    <label>
-                        Link text:
-                        <input value={this.state.linktext} onChange={this.handleLinkTextChange} type="text" name="linktext" />
-                    </label>
+                    <div id="entryFields">
+                        <label>
+                            <p>Timestamp :</p>
+                            <input value={this.state.timestamp} onChange={this.handleTimestampChange} type="text" name="timestamp" required />
+                        </label>
+                        <label>
+                            <p>URL :</p>
+                            <input value={this.state.url} onChange={this.handleURLChange} type="text" name="url" />
+                        </label>
+                        <label>
+                            <p>Link text :</p>
+                            <input value={this.state.linktext} onChange={this.handleLinkTextChange} type="text" name="linktext" />
+                        </label>
+                    </div>
                     <button onClick={this.handleSubmit} >Add Note</button>
                 </form>
             </div>
