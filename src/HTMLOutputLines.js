@@ -12,8 +12,8 @@ export default class HTMLOutputLines extends Component {
     }
 
     handleClick(e) {
-        this.removeNote(e.target.value);
-        console.log("target value: " + e.target.value)
+        const id = Number(e.target.value)
+        this.removeNote(id);
     }
     
 

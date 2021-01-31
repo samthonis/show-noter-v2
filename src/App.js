@@ -30,11 +30,8 @@ export class App extends React.Component {
     }
 
     removeNote(id) {
-      console.log('you tried to remove current id: ' + id);
       let notes = this.state.showNotes;
-      console.log(notes);
       notes = notes.filter(savedNote => savedNote.id !== id);
-      console.log(notes);
       this.setState({showNotes: notes});
     }
 

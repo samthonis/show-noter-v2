@@ -9,7 +9,7 @@ export default class InputSection extends Component {
             timestamp: '',
             url: '',
             linktext: '',
-            id: ''
+            id: 0
         }
         this.handleTimestampChange = this.handleTimestampChange.bind(this);
         this.handleLinkTextChange = this.handleLinkTextChange.bind(this);
@@ -31,7 +31,7 @@ export default class InputSection extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.setState({ id: `${id}` })
+        this.setState({ id })
         this.props.submit({ 
             timestamp: this.state.timestamp, 
             url: this.state.url, 
